@@ -9,7 +9,7 @@ var bio = {
     },
     "welcomeMessage": "Welcome to My Resume!",
     "skills": ["Web Development", "HTML", "CSS", "Python", "JavaScript"],
-    "bioPic": "images/ryan.png",
+    "biopic": "images/ryan.png",
     display: function() {
         var myRole = bio.role;
 
@@ -18,7 +18,7 @@ var bio = {
         $('#header').prepend('<span>' + myRole + '</span><hr>');
         $("#header").prepend(formattedName);
 
-        var mobile = bio.contacts.mobile
+        var mobile = bio.contacts.mobile;
         var formattedMobile = HTMLmobile.replace("%data%", mobile);
         var email = bio.contacts.email;
         var formattedEmail = HTMLemail.replace("%data%", email);
@@ -33,9 +33,9 @@ var bio = {
 
         $("#topContacts").append(formattedLocation);
 
-        var formattedBioPic = HTMLbioPic.replace("%data%", bio.bioPic);
+        var formattedBiopic = HTMLbioPic.replace("%data%", bio.biopic);
 
-        $("#header").append(formattedBioPic);
+        $("#header").append(formattedBiopic);
 
         var formattedwelcomeMessage = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
         $("#header").append(formattedwelcomeMessage);
@@ -48,7 +48,7 @@ var bio = {
             });
         }
     }
-}
+};
 
 bio.display();
 
@@ -93,7 +93,8 @@ var work = {
             });
         });
     }
-}
+};
+
 work.display();
 
 
@@ -154,7 +155,7 @@ var education = {
 
 
     }
-}
+};
 
 education.display();
 
@@ -195,7 +196,7 @@ var projects = {
 
 
     }
-}
+};
 
 projects.display();
 
@@ -204,7 +205,7 @@ function inName(name) {
     console.log(name);
     name[1] = name[1].toUpperCase();
     name[0] = name[0].slice(0, 1).toUpperCase() + name[0].slice(1).toLowerCase();
-    var intName = (name[0] + [" "] + name[1])
+    var intName = (name[0] + [" "] + name[1]);
     return intName;
 }
 
