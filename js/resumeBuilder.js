@@ -25,13 +25,7 @@ var bio = {
         var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
         var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
 
-        $("#topContacts").append(formattedMobile);
-
-        $("#topContacts").append(formattedEmail);
-
-        $("#topContacts").append(formattedGithub);
-
-        $("#topContacts").append(formattedLocation);
+        $("#topContacts, #footerContacts").append(formattedMobile + formattedEmail + formattedGithub + formattedLocation);
 
         var formattedBiopic = HTMLbioPic.replace("%data%", bio.biopic);
 
@@ -103,38 +97,47 @@ var education = {
             "name": "George Mason",
             "location": "Fairfax, VA",
             "degree": "BS",
-            "major": "Management Information Systems",
+            "majors": ["Management Information Systems"],
             "dates": "2010-2012",
+            "url": "https://www2.gmu.edu/",
         },
         {
             "name": "Virginia Tech",
             "location": "Blacksburg, VA",
             "degree": "BA",
-            "major": "History",
+            "majors": ["History"],
             "dates": "2005-2010",
+            "url": "https://www.vt.edu/",
         }
     ],
     "onlineCourses": [{
             "title": "Front End Developer NanoDegree",
             "school": "Udacity",
-            "dates": "2017"
+            "dates": "2017",
+            "url": "https://www.udacity.com/",
         },
         {
             "title": "Certified Mortgage Banker",
             "school": "Mortgage Bankers Association",
-            "dates": "2016"
+            "dates": "2016",
+            "url": "https://www.mba.org/",
         }
     ],
     display: function() {
         education.schools.forEach(function(education) {
             $("#education").append(HTMLschoolStart);
             var name = HTMLschoolName.replace("%data%", (education.name));
+            var newName = name.replace("#", (education.url));
             var degree = HTMLschoolDegree.replace("%data%", (education.degree));
             var dates = HTMLschoolDates.replace("%data%", (education.dates));
             var location = HTMLschoolLocation.replace("%data%", (education.location));
-            var major = HTMLschoolMajor.replace("%data%", (education.major));
-            var formattedEdu = name + degree + dates + location + major;
+            var formattedEdu = newName + degree + dates + location;
             $(".education-entry:last").append(formattedEdu);
+
+            education.majors.forEach(function(maj) {
+                var major = HTMLschoolMajor.replace("%data%", (maj));
+                $(".education-entry:last").append(major);
+            });
         });
 
         $("#education").append(HTMLonlineClasses);
@@ -144,10 +147,9 @@ var education = {
             var oName = HTMLonlineTitle.replace("%data%", (online.title));
             var oSchool = HTMLonlineSchool.replace("%data%", (online.school));
             var oDate = HTMLonlineDates.replace("%data%", (online.dates));
+            var newOName = oName.replace("#", (online.url));
 
-
-
-            $(".education-entry:last").append(oName + oSchool + oDate);
+            $(".education-entry:last").append(newOName + oSchool + oDate);
 
 
         });
@@ -236,10 +238,6 @@ $(document).click(function(loc) {
     logClicks(x, y);
     // your code goes here
 });
-
-
-$("#education").append(HTMLschoolStart);
-
 
 
 $("#mapDiv").append(googleMap);
